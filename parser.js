@@ -140,7 +140,10 @@ parser.prototype.parse = function(page) {
 
 parser.prototype.cleanup = function(word, cat, def) {
 
+	//console.log(def);
+	def = def.replace(/ \(\[\[[^\]]*\]\]\)/, "");
 	def = def.replace(new RegExp("{{(([^}|]+)\\|)+" + this.lng + "}}", "g"), "($2)");
+	def = def.replace(/{{(l\|en\|)([^}]*)}}/g, "$2");
 	def = def.replace(/{{[^}]*}}/g, "");
 
 	def = def.replace(/<(\w+)>[^<]*<\/\1>/, "").trim();
